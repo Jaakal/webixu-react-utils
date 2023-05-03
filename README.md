@@ -17,7 +17,7 @@ npm install webixu-react-utils
 
 To use Webixu React Utils, simply import the utility functions you need into your project:
 
-```
+```typescript
 import { destructureRef, destructureRefsObject } from 'webixu-react-utils';
 
 // use the functions here
