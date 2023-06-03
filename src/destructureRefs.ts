@@ -1,14 +1,18 @@
 import { RefObject } from 'react';
 
-export type RefsObject<T> = {
-  [K in keyof T]: RefObject<T[K]>;
+export type RefObjects<T extends {}> = {
+  [K in keyof T]: React.RefObject<T[K]>;
 };
 
-export const destructureRefsObject = <T extends {}>(refs: RefsObject<T>): T => {
+export const destructureRefObject = <T extends unknown>(
+  ref: React.RefObject<T>
+) => ref.current;
+
+export const destructureRefObjects = <T extends {}>(refs: RefObjects<T>): T => {
   return Object.keys(refs).reduce((destructuredRefs, key) => {
-    destructuredRefs[key as keyof T] = destructureRef(refs[key as keyof T]);
+    destructuredRefs[key as keyof T] = destructureRefObject(
+      refs[key as keyof T]
+    )!;
     return destructuredRefs;
   }, {} as T);
 };
-
-export const destructureRef = <T>(ref: RefObject<T>): T => ref.current!;

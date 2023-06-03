@@ -1,1 +1,1 @@
-export { destructureRef, destructureRefsObject } from './destructureRefs';
+export { destructureRefObject, destructureRefObjects } from './destructureRefs';
